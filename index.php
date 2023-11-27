@@ -1,4 +1,4 @@
-<?
+<?php
   //front end
 ?>
 
