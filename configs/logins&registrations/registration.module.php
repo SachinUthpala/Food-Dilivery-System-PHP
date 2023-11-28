@@ -3,7 +3,7 @@
 //starting session
 session_start();
 //getting db connection
-require_once "../configs/db.connection.php";
+require_once "../db.connection.php";
 
 //register the customer
 if(isset($_POST["register"])){
@@ -23,7 +23,7 @@ if(isset($_POST["register"])){
     $result = $conn->query($sql);
 
     if($result == 1){
-        header("Location: http://localhost/Food-Dilivery-System/");
+        header("Location: http://localhost/Food-Dilivery-System/Home/home.php");
         $_SESSION["userName"] = $name;
         exit();
     }

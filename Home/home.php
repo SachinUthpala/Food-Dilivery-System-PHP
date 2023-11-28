@@ -2,7 +2,7 @@
   //session start
   session_start();
   //db connection
-  require_once "./configs/db.connection.php";
+  require_once "../configs/db.connection.php";
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
     <!--upper image-->
     <link rel="icon" type="image/svg+xml" href="/imgs/Web-img/pre.jpeg" />
     <!--style sheets-->
-    <link rel="stylesheet" href="./Styles/index.css" />
+    <link rel="stylesheet" href="./home.css">
     <script
       src="https://kit.fontawesome.com/f096ac9546.js"
       crossorigin="anonymous"
@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-    <script src="./script/index.js"></script>
+    <script src="../script/index.js"></script>
   </head>
   <body>
     <div class="sec01 flexBetween">
@@ -68,9 +68,10 @@
       <div class="nav1">
         <ul class="flexGap menues">
           <li><a href="">Home</a></li>
-          <li><a href="#starters">About Us</a></li>
-          <li><a href="#mains">Our Outlets</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#starters">Starters</a></li>
+          <li><a href="#mains">Mains</a></li>
+          <li><a href="#desserts">Desserts</a></li>
+          <li><a href="#pckages">Packages</a></li>
         </ul>
         <i
           class="fa-solid fa-bars"
@@ -81,7 +82,15 @@
       </div>
       <div class="nav2 flexGap">
         <i class="fa-regular fa-user" style="color: #000000"  onclick="openLogin()"></i>
-        <span class="login" onclick="openLogin()">SIGN IN / SIGN UP</span>
+        <span style="text-transform: uppercase;">
+          <?php
+            if (empty($_SESSION["userName"])){
+              echo "ERR";
+            }else{
+              echo "HELLO ".$_SESSION["userName"] ;
+            }
+          ?>        
+        </span>
       </div>
     </nav>
 
@@ -95,68 +104,16 @@
           ></i>
         </li>
         <li><a href="">Home</a></li>
-        <li><a href="#starters" onclick="closeMenu()">About Us</a></li>
-        <li><a href="#mains" onclick="closeMenu()">Our Outlets</a></li>
-        <li><a href="">Contact Us</a></li>
+        <li><a href="#starters" onclick="closeMenu()">Starters</a></li>
+        <li><a href="#mains" onclick="closeMenu()">Mains</a></li>
+        <li><a href="">Desserts</a></li>
+        <li><a href="">Packages</a></li>
       </ul>
     </div>
     <!--end of navigation section-->
 
-    <!--popup login & registrations-->
-    <div class="loginss" id="loginnss">
-      <div class="container hiddenx" id="container">
-        <div class="form-container sign-up">
-            <form action="./configs/logins&registrations/registration.module.php" method="post">
-                <h1>Create Account</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registeration</span>
-                <input type="text" placeholder="Name" name="name" required>
-                <input type="email" placeholder="Email" name="email" required> 
-                <input type="password" placeholder="Password" name="password" required>
-                <button type="submit" name="register">Sign Up</button>
-                <button onclick="closeLogin()">Cancel</button>
-            </form>
-        </div>
-        <div class="form-container sign-in">
-            <form>
-                <h1>Sign In</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
-                <button onclick="closeLogin()">Cancel</button>
-            </form>
-        </div>
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back Foodies!</h1>
-                    <p>Enter your personal details to use all of site features</p>
-                    <button class="hidden" id="login">Sign In</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Hello, Foodies!</h1>
-                    <p>Register with your personal details to use all of site features</p>
-                    <button class="hidden" id="register">Sign Up</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 
-    <!--end of popup login-->
-
-    <!--seconf section-->
+    <!--second section-->
     <div class="sec02">
       <div class="left hiddenx">
         <div class="left01">
@@ -177,7 +134,7 @@
         </div>
       </div>
       <div class="middle">
-        <img src="./imgs/Web-img/bg.png" class="hiddeny" alt="">
+        <img src="../imgs/Web-img/bg.png" class="hiddeny" alt="">
       </div>
 
       <div class="right hiddenx">
@@ -200,42 +157,135 @@
       </div>
     </div>
     <!--end os 2nd section-->
-    
 
-    <!--inquery section-->
-    
-    <section class="inquery"  id = "contact">
-      <span class="topic">
-        FIND YOUR OWN TASTE
-      </span>
-      <h1>
-        <span style="font-family: 'Playfair Display', serif;">Find </span>Now
-      </h1>
-
-      <div class="inqureDetails">
-        <div class="i-dt">
-          <span class="i-dt-topic">
-            Talk
-          </span>
-          <p>+94 76 271 2200</p>
-          <p>+94 75 086 0861</p>
-          <p>+94 75 086 0862</p>
-          <br>
-          <span class="i-dt-topic">
-            Mail Now
-          </span>
-          <p>river'sEdge@yahoo.com</p>
-          <p>river'sEdge@gmail.com</p>
-          <p>SjdsSamarawers@gmail.com</p>
+    <!--3 section section-->
+    <div class="sec03" id="starters">
+      <div class="headdings">
+        <span class="primaryText"> Starters </span><br /><br />
+        <span class="secondaryText">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, vel!
+        </span>
+      </div>
+      <br /><br />
+      <div class="items">
+        
+        <div class="product">
+          <div class="product-img">
+            <img src="../imgs/Web-img/BackGround.jpg" alt="" />
+          </div>
+          <div class="product-name">
+            <span class="secondaryText"> Food Item </span><br /><br />
+            <span style="line-height: 25px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
+              expedita.
+            </span>
+          </div>
+          <div class="addToCart">
+            <button type="button">
+              ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
         </div>
-        <div class="i-form">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41830.996262991655!2d80.38422371126055!3d5.992127998129937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae16b18fd149cf5%3A0x51e8715a6bd36414!2sVilla%20Hillcrest!5e0!3m2!1ssi!2slk!4v1698246501197!5m2!1ssi!2slk"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        
+        
+        
+      </div>
+    </div>
+    <!--3 end section section-->
+
+    <!--4 section section-->
+    <div class="sec03" id="mains">
+      <div class="headdings">
+        <span class="primaryText"> Mains </span><br /><br />
+        <span class="secondaryText">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, vel!
+        </span>
+      </div>
+      <div class="items">
+        <div class="product">
+          <div class="product-img">
+            <img src="../imgs/Web-img/BackGround.jpg" alt="" />
+          </div>
+          <div class="product-name">
+            <span class="secondaryText"> Food Item </span><br /><br />
+            <span style="line-height: 25px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
+              expedita.
+            </span>
+          </div>
+          <div class="addToCart">
+            <button type="button">
+              ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+    <!--4 end section section-->
 
-    <!--end of inquerys section-->
+    <!--section 5-->
+    <div class="sec03" id="desserts">
+      <div class="headdings">
+        <span class="primaryText"> Desserts </span><br /><br />
+        <span class="secondaryText">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, vel!
+        </span>
+      </div>
+      <div class="items">
 
+        <div class="product">
+          <div class="product-img">
+            <img src="../imgs/Web-img/BackGround.jpg" alt="" />
+          </div>
+          <div class="product-name">
+            <span class="secondaryText"> Food Item </span><br /><br />
+            <span style="line-height: 25px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
+              expedita.
+            </span>
+          </div>
+          <div class="addToCart">
+            <button type="button">
+              ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--end of section 5-->
+
+    <!--section 6-->
+    <div class="sec03" id="pckages">
+      <div class="headdings">
+        <span class="primaryText"> Packages </span><br /><br />
+        <span class="secondaryText">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, vel!
+        </span>
+      </div>
+      <div class="items">
+        
+        <div class="product">
+          <div class="product-img">
+            <img src="../imgs/Web-img/BackGround.jpg" alt="" />
+          </div>
+          <div class="product-name">
+            <span class="secondaryText"> Food Item </span><br /><br />
+            <span style="line-height: 25px">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
+              expedita.
+            </span>
+          </div>
+          <div class="addToCart">
+            <button type="button">
+              ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--end of section 6-->
 
     <!--footer-->
     <div class="footer flexBetween">
@@ -282,7 +332,7 @@
         </div>
     </div>
     <!--end of the footer-->
-    <script src="./script/app.js"></script>
-    <script src="./script/login.js"></script>
+    <script src="../script/app.js"></script>
+    <script src="../script/login.js"></script>
   </body>
 </html>
