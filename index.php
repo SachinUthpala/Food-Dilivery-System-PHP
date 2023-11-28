@@ -1,5 +1,5 @@
 <?php 
-
+  require_once "./configs/db.connection.php";
 ?>
 
 <!DOCTYPE html>
@@ -101,11 +101,11 @@
     </div>
     <!--end of navigation section-->
 
-    <!--popup login-->
+    <!--popup login & registrations-->
     <div class="loginss" id="loginnss">
       <div class="container hiddenx" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form action="./logins&registrations//registration.module.php" method="post">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -113,10 +113,10 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registeration</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <input type="text" placeholder="Name" name="name" required>
+                <input type="email" placeholder="Email" name="email" required> 
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit" name="register">Sign Up</button>
                 <button onclick="closeLogin()">Cancel</button>
             </form>
         </div>
