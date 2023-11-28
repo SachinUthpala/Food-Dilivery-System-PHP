@@ -23,6 +23,32 @@
 }
 /*end of global css */
 
+/*animations*/
+.hiddenx{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100px);
+    transition: all 1s;
+}
+
+.showx{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+.hiddeny{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(200px);
+    transition: all 1.5s;
+}
+
+.showy{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
 /*section 01*/
 .sec01{
     padding: 20px 30px;
@@ -158,22 +184,50 @@ nav ul li:hover:after{
 
 /*section 02*/
 .sec02{
-    width: 100%;
     height: 64vh;
-    background: linear-gradient(#ffffff8e,#ffffff8e),url(../imgs/Web-img/BackGround.jpg);
-    background-size: cover;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inconsolata', monospace;
+    text-transform: uppercase;
     text-align: center;
-    font-family: sans-serif;
 }
 
-.sec02 .primaryText{
-    font-size: 70px;
-    color: transparent;
-    -webkit-text-stroke: 2px #000000;
-    background: orangered;
-    -webkit-background-clip: text;
-    background-position: 0 0;
-    animation: back 20s linear infinite;
+.sec02 .middle{
+    background: url(../imgs/Web-img/bgcirclr\ \(1\).png) no-repeat;
+    background-size: cover;
+}
+
+.left02 , .right02  {
+    padding-top: 180px;
+}
+
+@media(max-width : 640px), (max-width:768px){
+    .sec02{
+        height: auto;
+        flex-direction: column;
+    }
+
+    .sec02 .middle{
+        width: 50%;
+    }
+
+    .sec02 .middle img{
+        width: 400px;
+    }
+
+    .left02 , .right02{
+        padding-top: 0px;
+    }
+
+    .left , .right{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
 }
 
 /*

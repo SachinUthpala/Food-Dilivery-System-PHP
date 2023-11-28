@@ -1,5 +1,5 @@
-<?php
-  //front end
+<?php 
+
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +23,8 @@
       href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
     <script src="./script/index.js"></script>
   </head>
@@ -101,14 +103,46 @@
 
     <!--seconf section-->
     <div class="sec02">
-      <br /><br /><br /><br /><br />
-      <span class="primaryText maintext"> Well Come Foodies </span><br /><br />
-      <span class="secondaryText">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum,
-        earum?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum,
-        earum? Lorem ipsum dolor sit amet consectetur, Lorem ipsum dolor sit
-        amet consectetur, Lorem ipsum dolor sit amet consectetur,<br />
-      </span>
+      <div class="left hiddenx">
+        <div class="left01">
+          <span class="primaryText">
+            <i class="fa-regular fa-clock" style="color: #000000;"></i>
+          </span><br>
+          <span class="secondaryText">
+            fast delivery
+          </span>
+        </div>
+        <div class="left02">
+          <span class="primaryText">
+            <i class="fas fa-hamburger" style="color: #000000;"></i>
+          </span><br>
+          <span class="secondaryText">
+            100% healthy
+          </span>
+        </div>
+      </div>
+      <div class="middle">
+        <img src="./imgs/Web-img/bg.png" class="hiddeny" alt="">
+      </div>
+
+      <div class="right hiddenx">
+        <div class="right01">
+          <span class="primaryText">
+            <i class="fa-regular fa-star" style="color: #000000;"></i>
+          </span><br>
+          <span class="secondaryText">
+            5 star ratings
+          </span>
+        </div>
+        <div class="right02">
+          <span class="primaryText">
+            <i class="fa-solid fa-utensils" style="color: #000000;"></i>
+          </span><br>
+          <span class="secondaryText">
+            Dine In / Takeaway
+          </span>
+        </div>
+      </div>
     </div>
     <!--end os 2nd section-->
 
@@ -549,5 +583,6 @@
         </div>
     </div>
     <!--end of the footer-->
+    <script src="./script/app.js"></script>
   </body>
 </html>
