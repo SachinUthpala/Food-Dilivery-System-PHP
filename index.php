@@ -1,4 +1,7 @@
 <?php 
+  //session start
+  session_start();
+  //db connection
   require_once "./configs/db.connection.php";
 ?>
 
@@ -79,7 +82,7 @@
       </div>
       <div class="nav2 flexGap">
         <i class="fa-regular fa-user" style="color: #000000"  onclick="openLogin()"></i>
-        <span class="login" onclick="openLogin()"> LOGIN / SIGN UP </span>
+        <span class="login" onclick="openLogin()">SIGN IN / SIGN UP</span>
       </div>
     </nav>
 
