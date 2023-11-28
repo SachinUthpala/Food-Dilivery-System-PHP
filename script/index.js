@@ -8,3 +8,11 @@ function closeMenu() {
   
 }
 
+
+function openLogin() {
+    document.getElementById("loginnss").style.display = "flex";
+}
+
+function closeLogin() {
+    document.getElementById("loginnss").style.display = "none";
+}

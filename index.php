@@ -78,8 +78,8 @@
         ></i>
       </div>
       <div class="nav2 flexGap">
-        <i class="fa-regular fa-user" style="color: #000000"></i>
-        <span class="login"> LOGIN / SIGN UP </span>
+        <i class="fa-regular fa-user" style="color: #000000"  onclick="openLogin()"></i>
+        <span class="login" onclick="openLogin()"> LOGIN / SIGN UP </span>
       </div>
     </nav>
 
@@ -100,6 +100,60 @@
       </ul>
     </div>
     <!--end of navigation section-->
+
+    <!--popup login-->
+    <div class="loginss" id="loginnss">
+      <div class="container hiddenx" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registeration</span>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <button>Sign Up</button>
+                <button onclick="closeLogin()">Cancel</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1>Sign In</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email password</span>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <a href="#">Forget Your Password?</a>
+                <button>Sign In</button>
+                <button onclick="closeLogin()">Cancel</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back Foodies!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Foodies!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--end of popup login-->
 
     <!--seconf section-->
     <div class="sec02">
@@ -584,5 +638,6 @@
     </div>
     <!--end of the footer-->
     <script src="./script/app.js"></script>
+    <script src="./script/login.js"></script>
   </body>
 </html>
