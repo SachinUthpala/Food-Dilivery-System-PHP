@@ -3,6 +3,16 @@
   session_start();
   //db connection
   require_once "../configs/db.connection.php";
+  
+  // Turn off all error reporting
+  error_reporting(0);
+  
+
+  if($_SESSION["LoginOnce"] == null){
+    $_SESSION["LoginOnce"] = null;
+  }else{
+    $_SESSION["LoginOnce"] = 1;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +38,9 @@
     />
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
 
     <script src="../script/index.js"></script>
   </head>
@@ -62,6 +75,15 @@
         </div>
       </div>
     </div>
+    
+    <!--sweet alert-->
+    <?php
+      if($_SESSION["userName"] != null && $_SESSION["LoginOnce"] == null){
+        print '<script>swal("Success!", "You are Sucessfully logedin!", "success");</script>';
+        $_SESSION["LoginOnce"] = 1;
+      }
+    ?>
+
 
     <!--navigation section-->
     <nav>

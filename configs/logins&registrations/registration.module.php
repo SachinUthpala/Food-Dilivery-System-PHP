@@ -16,17 +16,33 @@ if(isset($_POST["register"])){
     print $email;
     print $pass;
 
-    $password_Hash = password_hash($pass, PASSWORD_DEFAULT);
+    //we can not duplicate the email again and again. because user must unique
 
-    $sql = "INSERT INTO customers( name, email, password) VALUES ('$name','$email','$password_Hash')";
+    $mailQuery = "SELECT * FROM customers WHERE email = '$email'";
+    $mailResult = $conn->query($mailQuery);
 
-    $result = $conn->query($sql);
-
-    if($result == 1){
-        header("Location: http://localhost/Food-Dilivery-System/Home/home.php");
-        $_SESSION["userName"] = $name;
+    if($mailResult->num_rows > 0){
+        header("Location: http://localhost/Food-Dilivery-System");
+        $_SESSION["RemainingEmail"] = 1;
+        $_SESSION["emailRemaingCheack"] = 0;
         exit();
+    }else{
+
+        //hashing password for security
+        $password_Hash = password_hash($pass, PASSWORD_DEFAULT);
+        //query for data insert
+        $sql = "INSERT INTO customers( name, email, password) VALUES ('$name','$email','$password_Hash')";
+
+        $result = $conn->query($sql);
+        //result
+        if($result == 1){
+            header("Location: http://localhost/Food-Dilivery-System/Home/home.php");
+            $_SESSION["userName"] = $name;
+            exit();
+        }
     }
+
+
 }
 
 

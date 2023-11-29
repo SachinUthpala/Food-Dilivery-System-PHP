@@ -3,6 +3,14 @@
   session_start();
   //db connection
   require_once "./configs/db.connection.php";
+
+  // Turn off all error reporting
+  error_reporting(0);
+
+  //email Remaining session
+  if($_SESSION["RemainingEmail"] != null && $_SESSION["emailRemaingCheack"] == 1){
+    $_SESSION["RemainingEmail"] = null;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +36,9 @@
     />
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
 
     <script src="./script/index.js"></script>
   </head>
@@ -101,6 +112,16 @@
       </ul>
     </div>
     <!--end of navigation section-->
+
+    <!--raming email alert-->
+   <?php
+     if($_SESSION["RemainingEmail"] != null){
+      $_SESSION["emailRemaingCheack"] = 1;
+      print '<script>swal("Sorry!", "Opps, User Aleready EXsist. Use diffrant email.", "error");;</script>';
+    }else{
+
+    }
+   ?>
 
     <!--popup login & registrations-->
     <div class="loginss" id="loginnss">
