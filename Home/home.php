@@ -9,6 +9,8 @@
     header("Location: http://localhost/Food-Dilivery-System");
   }
 
+  // Turn off all error reporting
+  error_reporting(0);
 
   //cheacking !not important
   if($_SESSION["LoginOnce"] == null){
@@ -113,13 +115,13 @@
         ></i>
       </div>
       <div class="nav2 flexGap">
-        <i class="fa-regular fa-user namess" style="cursor:pointer;" onclick="location.href = '/profile/profile.php';" ></i>
-        <span style="text-transform: uppercase;cursor:pointer;" class="namess">
+        <img src="../imgs/Web-img/img01.jpg" alt="" class="profile-img" onclick="location.href = '../profile/profile.php';" >
+        <span style="text-transform: uppercase;cursor:pointer;" class="namess" onclick="function5()">
           <?php
             if (empty($_SESSION["userName"])){
               echo "ERR";
             }else{
-              echo "HELLO ".$_SESSION["userName"] ;
+              echo "".$_SESSION["userName"] ;
             }
           ?>        
         </span>
@@ -366,5 +368,31 @@
     <!--end of the footer-->
     <script src="../script/app.js"></script>
     <script src="../script/login.js"></script>
+
+
+
+
+
+     <!--sweet alert-->
+    <script>
+            function function5() {
+                swal({
+                title: "Are you sure?",
+                text: "Do you want to exsit?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    location.href = "../configs/logins&registrations/logOut.php";
+                } else {
+                    swal("Your file is safe!");
+                }
+                });
+            }
+    </script>
+
+
   </body>
 </html>

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodies</title>
     <link rel="stylesheet" href="profile.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
 </head>
 
 <body>
@@ -113,7 +115,7 @@
         </div>
         <div class="text-right mt-3">
             <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
-            <button type="button" class="btn btn-default">Cancel</button>
+            <button type="button" class="btn btn-default" onclick="function5()">Cancel</button>
         </div>
     </div>
     </form>
@@ -127,21 +129,25 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!--sweet alert-->
+    <script>
+            function function5() {
+                swal({
+                title: "Are you sure?",
+                text: "Do you want to exsit?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    location.href = "../Home/home.php";
+                } else {
+                    swal("Your file is safe!");
+                }
+                });
+            }
+    </script>
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
