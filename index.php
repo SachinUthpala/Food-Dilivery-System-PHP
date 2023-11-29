@@ -8,9 +8,6 @@
   error_reporting(0);
 
   //email Remaining session
-  if($_SESSION["RemainingEmail"] != null && $_SESSION["emailRemaingCheack"] == 1){
-    $_SESSION["RemainingEmail"] = null;
-  }
 ?>
 
 <!DOCTYPE html>
@@ -116,10 +113,17 @@
     <!--raming email alert-->
    <?php
      if($_SESSION["RemainingEmail"] != null){
-      $_SESSION["emailRemaingCheack"] = 1;
+      $_SESSION["RemainingEmail"] = null;
       print '<script>swal("Sorry!", "Opps, User Aleready EXsist. Use diffrant email.", "error");;</script>';
-    }else{
-
+    }else if($_SESSION["worngMAil"] != null){
+      $_SESSION["worngMAil"] = null;
+      print '<script>swal("Sorry!", "Opps, Wrong Email Use diffrant email.", "error");;</script>';
+    }else if($_SESSION["worngPassword"] != null){
+      $_SESSION["worngPassword"] = null;
+      print '<script>swal("Sorry!", "Opps, Wrong Password. Try Again.", "error");;</script>';
+    }else if($_SESSION["wrongMailAndPassword"] != null){
+      $_SESSION["worngPassword"] = null;
+      print '<script>swal("Sorry!", "Opps, Wrong Password and Email. Try Again.", "error");;</script>';
     }
    ?>
 

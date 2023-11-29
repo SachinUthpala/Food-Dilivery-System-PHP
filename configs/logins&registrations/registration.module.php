@@ -36,6 +36,7 @@ if(isset($_POST["register"])){
         //result
         if($result == 1){
             header("Location: http://localhost/Food-Dilivery-System/Home/home.php");
+            $_SESSION["usrEmail"] = $email;
             $_SESSION["userName"] = $name;
             exit();
         }

@@ -4,15 +4,20 @@
   //db connection
   require_once "../configs/db.connection.php";
   
-  // Turn off all error reporting
-  error_reporting(0);
-  
+  //if unsussfull login redirect to login
+  if($_SESSION["userName"]  == null){
+    header("Location: http://localhost/Food-Dilivery-System");
+  }
 
+
+  //cheacking !not important
   if($_SESSION["LoginOnce"] == null){
     $_SESSION["LoginOnce"] = null;
   }else{
     $_SESSION["LoginOnce"] = 1;
   }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -79,11 +84,16 @@
     <!--sweet alert-->
     <?php
       if($_SESSION["userName"] != null && $_SESSION["LoginOnce"] == null){
+        print '<script>swal("Success!", "You are Sucessfully registed!", "success");</script>';
+        $_SESSION["LoginOnce"] = 1;
+      }
+
+      if($_SESSION["logedIn"] == 1 && $_SESSION["usrEmail"] != null){
         print '<script>swal("Success!", "You are Sucessfully logedin!", "success");</script>';
         $_SESSION["LoginOnce"] = 1;
       }
     ?>
-
+  <!--end of sweet alert-->
 
     <!--navigation section-->
     <nav>
@@ -103,8 +113,8 @@
         ></i>
       </div>
       <div class="nav2 flexGap">
-        <i class="fa-regular fa-user" style="color: #000000"  onclick="openLogin()"></i>
-        <span style="text-transform: uppercase;">
+        <i class="fa-regular fa-user namess" style="cursor:pointer;" onclick="location.href = '/profile/profile.php';" ></i>
+        <span style="text-transform: uppercase;cursor:pointer;" class="namess">
           <?php
             if (empty($_SESSION["userName"])){
               echo "ERR";

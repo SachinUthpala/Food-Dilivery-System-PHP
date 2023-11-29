@@ -132,6 +132,12 @@ nav ul li:hover:after {
     color: orangered;
 }
 
+
+.nav2 .namess:hover{
+    color: orangered;
+    transition: 1s;
+}
+
 @media(max-width : 640px), (max-width:768px) {
     #menuIcon {
         display: block;
