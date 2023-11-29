@@ -124,6 +124,7 @@
    ?>
 
     <!--popup login & registrations-->
+    <!--registration form-->
     <div class="loginss" id="loginnss">
       <div class="container hiddenx" id="container">
         <div class="form-container sign-up">
@@ -142,8 +143,9 @@
                 <button onclick="closeLogin()">Cancel</button>
             </form>
         </div>
+        <!--login form-->
         <div class="form-container sign-in">
-            <form>
+            <form action="./configs/logins&registrations/login.php" method="post" >
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -151,13 +153,14 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <button type="submit" name="login">Sign In</button>
                 <button onclick="closeLogin()">Cancel</button>
             </form>
         </div>
+        <!--side menu-->
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">

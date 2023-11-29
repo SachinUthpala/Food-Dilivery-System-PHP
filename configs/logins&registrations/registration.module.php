@@ -28,10 +28,9 @@ if(isset($_POST["register"])){
         exit();
     }else{
 
-        //hashing password for security
-        $password_Hash = password_hash($pass, PASSWORD_DEFAULT);
+       
         //query for data insert
-        $sql = "INSERT INTO customers( name, email, password) VALUES ('$name','$email','$password_Hash')";
+        $sql = "INSERT INTO customers( name, email, password) VALUES ('$name','$email','$pass')";
 
         $result = $conn->query($sql);
         //result
