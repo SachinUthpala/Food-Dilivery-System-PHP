@@ -14,6 +14,7 @@
   error_reporting(0);
 
   $n =0;
+  $f = 0;
   
 ?>
 
@@ -373,17 +374,44 @@
                 <th>CATOGARY</th>
                 <th>DISCRIPTION</th>
                 <th>PRICE</th>
-                <th>IMG</th>
                 <th>UPDATE</th>
                 <th>DELETE</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-
+                  <?php 
+                  while($Frows = mysqli_fetch_assoc($FoodResult)){
+                    $f = $f + 1;
+                  ?>
+                  <td><?php echo $f; ?></td>
+                  <td><?php echo $Frows["p_name"]?></td>
+                  <td><?php echo $Frows["p_catogary"]?></td>
+                  <td><?php echo $Frows["p_discription"]?></td>
+                  <td><?php echo $Frows["p_price"]?></td>
+                  <td>
+                      <form action="./Add&UpdateFood/Add_Update_Food.php" method="post">
+                        <input type="text" name="f_ids" value="<?php echo $Frows["p_id"];?>" hidden>
+                        <input type="submit" name="updateFood"
+                        style="padding: 5px 10px; color:#000000;background:lawngreen;border:1px solid lawngreen;border-radius:5px;cursor:pointer;"
+                        value="Update">
+                        
+                      </form>
+                  </td>
+                  <td>
+                      <form action="" method="post">
+                        <input type="text" value="<?php echo $Frows['p_id'];?>" hidden>
+                        <input type="submit" 
+                        style="padding: 5px 10px; color:#000000;background:#FF004F;border:1px solid #FF004F;border-radius:5px;cursor:pointer;"
+                        value="Update">
+                      </form>
+                  </td>
               </tr>
+              <?php
+                  }
+              ?>
             </tbody>
-            <tbody>
+          </table>
 
         </div>
       </main>

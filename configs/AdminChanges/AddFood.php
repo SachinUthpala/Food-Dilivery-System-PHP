@@ -11,7 +11,7 @@ if(isset($_POST["addFood"])){
     echo $foodName."__==__".$foodDiscription."__=__".$foodPrice."____".$foodType;
 
     $sql = "INSERT INTO products (p_name,p_catogary,p_discription,p_price) 
-            VALUES ('$foodName','$foodType','$foodDiscription$foodPrice','$foodPrice')";
+            VALUES ('$foodName','$foodType','$foodDiscription','$foodPrice')";
 
     $result = $conn->query($sql);
     
