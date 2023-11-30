@@ -331,3 +331,8 @@ body {
   font-weight: bold;
   color: #009879;
 }
+
+.add-card:hover{
+  background-color: orange;
+  transition: 0.5s;
+}

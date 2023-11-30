@@ -67,17 +67,17 @@
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
             <a href="#main" onclick="openMain(1)">
-              <span class="material-icons-outlined">dashboard</span> Dashboard
+              <span class="material-icons-outlined">dashboard</span> DASHBORD
             </a>
           </li>
           <li class="sidebar-list-item">
             <a href="#main2" onclick="openMain(2)">
-              <span class="material-icons-outlined">person</span> Users
+              <span class="material-icons-outlined">person</span> USERS
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#" >
-              <span class="material-icons-outlined">fact_check</span> Inventory
+            <a href="#" onclick="openMain(3)">
+              <span class="material-icons-outlined">fact_check</span> FOODS
             </a>
           </li>
           <li class="sidebar-list-item">
@@ -104,14 +104,34 @@
       </aside>
       <!-- End Sidebar -->
       <?php
+
+      //for sweet alert
         if($_SESSION["RemoveAccess"] != null){
           print '<script>swal("Success!", "Now User Does Not Have Admin Access", "success");</script>';
           $_SESSION["RemoveAccess"] = null;
         }else if($_SESSION["GiveAccess"] != null){
           print '<script>swal("Success!", "Now User Have Admin Access", "success");</script>';
           $_SESSION["GiveAccess"]=null;
+        }else if($_SESSION["userDeleted"] != null){
+          print '<script>swal("Success!", "USER DELETED !", "success");</script>';
+          $_SESSION["userDeleted"] = null;
+        }else if($_SESSION["FoodAdded"] != null){
+          print '<script>swal("Success!", "Food Added !", "success");</script>';
+          $_SESSION["FoodAdded"] = null;
         }
       ?>
+
+      <!--php for main -->
+      <?php
+      //to get total product
+        $sqlForProducts = "SELECT * FROM products";
+        $prResult = $conn ->  query($sqlForProducts);
+
+        $totalProducts = mysqli_num_rows($prResult);
+    
+
+      ?>
+      <!--end php for main -->
       <!-- Main -->
       <main class="main-container" id="main">
         <div class="main-title">
@@ -122,10 +142,10 @@
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">NO PRODUCTS</p>
+              <p class="text-primary">NO FOOD ITEMS</p>
               <span class="material-icons-outlined text-blue">inventory_2</span>
             </div>
-            <span class="text-primary font-weight-bold">249</span>
+            <span class="text-primary font-weight-bold"><?php echo $totalProducts; ?></span>
           </div>
 
           <div class="card">
@@ -154,10 +174,50 @@
       </main>
       <!-- End Main1 -->
 
+      <!--php for get user count-->
+      <?php
+        $adSql = "SELECT * FROM customers WHERE isAdmin = 1";
+        $adCresult = $conn -> query($adSql);
+        $adNumRows = mysqli_num_rows($adCresult);
+
+        $CuSql = "SELECT * FROM customers WHERE isAdmin = 0";
+        $CuCresult = $conn -> query($CuSql);
+        $CuNumRows = mysqli_num_rows($CuCresult);
+      ?>
+
       <main class="main-container" id="main2">
         <div class="main-title">
           <p class="font-weight-bold">USERS</p>
         </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">TOTAL ADMINS</p>
+              <span class="material-icons-outlined text-blue">support_agent</span>
+            </div>
+            <span class="text-primary font-weight-bold"><?php echo $adNumRows; ?></span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">TOTAL CUSTOMERS</p>
+              <span class="material-icons-outlined text-orange">person</span>
+            </div>
+            <span class="text-primary font-weight-bold"><?php echo $CuNumRows ?></span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">TOTAL USERS</p>
+              <span class="material-icons-outlined text-red">group</span>
+            </div>
+            <span class="text-primary font-weight-bold"><?php echo $numofUserRows; ?></span>
+          </div>
+
+        </div>
+
         <div class="charts">
 
           <table class="content-table">
@@ -169,7 +229,7 @@
                 <th>PHONE</th>
                 <th>PASSWORD</th>
                 <th>IS ADMIN</th>
-                <th>UPDATE / DELETE</th>
+                <th>DELETE</th>
                 <th>ADMIN ACCESS</th>
               </tr>
             </thead>
@@ -186,19 +246,16 @@
                 <td><?php echo $row['password'] ?></td>
                 <td><?php 
                   if($row['isAdmin'] == 0){
-                    echo "Customer";
+                    echo "Customer"; 
                   }else if($row['isAdmin'] == 1){
                     echo "Admin";
                   }
                 ?></td>
                 <td>
-                  <form action="">
-                    <input type="email" name="" value="<?php echo $row['email'];?>" hidden>
+                  <form action="../configs/AdminChanges/deleteUser.php" method="post">
+                    <input type="email" name="deleteUser" value="<?php echo $row['email'];?>" hidden>
                     <input type="submit" 
-                    style="padding: 5px 10px; color:#000000;background:greenyellow;border:1px solid greenyellow;border-radius:5px;cursor:pointer;" 
-                    value="Update">
-
-                    <input type="submit" 
+                    name="delete"
                     style="padding: 5px 10px; color:#000000;background:#FF004F;border:1px solid #FF004F;border-radius:5px;cursor:pointer;"
                     value="Delete">
                   </form>
@@ -217,7 +274,7 @@
                       }
                     ?>"
                     
-                    style="
+                    style ="
                     <?php
                       if($row['isAdmin'] == 1){
                         echo "padding: 5px 10px; color:#000000;background:#FF004F;border:1px solid #FF004F;border-radius:5px;cursor:pointer;";
@@ -254,31 +311,39 @@
 
       <main class="main-container" id="main3">
         <div class="main-title">
-          <p class="font-weight-bold">DASHBOARD</p>
+          <p class="font-weight-bold">FOODS</p>
         </div>
 
         <div class="main-cards">
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">AAAAA</p>
-              <span class="material-icons-outlined text-blue">inventory_2</span>
+              <p class="text-primary">STARTERS</p>
+              <span class="material-icons-outlined text-blue">soup_kitchen</span>
             </div>
             <span class="text-primary font-weight-bold">249</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">AAAAA</p>
-              <span class="material-icons-outlined text-orange">monetization_on</span>
+              <p class="text-primary">MAINS</p>
+              <span class="material-icons-outlined text-orange">lunch_dining</span>
             </div>
             <span class="text-primary font-weight-bold">83</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">ACCCC</p>
-              <span class="material-icons-outlined text-green">sperson</span>
+              <p class="text-primary">DESSERTS</p>
+              <span class="material-icons-outlined text-green">icecream</span>
+            </div>
+            <span class="text-primary font-weight-bold">79</span>
+          </div>
+
+          <div class="card add-card"   style="cursor: pointer;"   onclick="location.href='./Add&UpdateFood/Add_Update_Food.php'" >    
+            <div class="card-inner">
+              <p class="text-primary">ADD FOOD</p>
+              <span class="material-icons-outlined text-green">icecream</span>
             </div>
             <span class="text-primary font-weight-bold">79</span>
           </div>
@@ -287,7 +352,25 @@
 
         <div class="charts">
 
-          
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>NO</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>PHONE</th>
+                <th>PASSWORD</th>
+                <th>IS ADMIN</th>
+                <th>DELETE</th>
+                <th>ADMIN ACCESS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                
+              </tr>
+            </tbody>
+            <tbody>
 
         </div>
       </main>
