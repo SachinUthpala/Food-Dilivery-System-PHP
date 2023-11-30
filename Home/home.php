@@ -12,7 +12,12 @@
   // Turn off all error reporting
   error_reporting(0);
 
+  //getting data from databse about user
+  $mailsA = $_SESSION["usrEmail"];
 
+  $sqlForAdmin = "SELECT isAdmin FROM customers WHERE email = '$mailsA' ";
+  $result = $conn->query($sqlForAdmin);
+  $rowAdmin = $result->fetch_assoc();
 
 ?>
 
@@ -109,6 +114,15 @@
         ></i>
       </div>
       <div class="nav2 flexGap">
+        <span style="text-transform: uppercase;cursor:pointer;color:red;" class="namess" onclick="function6()">
+          <?php
+            if ($rowAdmin["isAdmin"] == 1){
+              echo "ADMIN ACCESS";
+            }else{
+              
+            }
+          ?>        
+        </span>
         <img src="../imgs/Web-img/img01.jpg" alt="" class="profile-img" onclick="location.href = '../profile/profile.php';" >
         <span style="text-transform: uppercase;cursor:pointer;" class="namess" onclick="function5()">
           <?php
@@ -119,6 +133,7 @@
             }
           ?>        
         </span>
+        
       </div>
     </nav>
 
@@ -381,7 +396,24 @@
                 if (willDelete) {
                     location.href = "../configs/logins&registrations/logOut.php";
                 } else {
-                    swal("Your file is safe!");
+                    swal("YYOu are safe!");
+                }
+                });
+            }
+
+            function function6() {
+                swal({
+                title: "Are you sure?",
+                text: "Do you want to switch Admin Panel?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    location.href = "../AdminPanel/AdminPanel.php";
+                } else {
+                    swal("OK");
                 }
                 });
             }
