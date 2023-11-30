@@ -119,6 +119,12 @@
         }else if($_SESSION["FoodAdded"] != null){
           print '<script>swal("Success!", "Food Added !", "success");</script>';
           $_SESSION["FoodAdded"] = null;
+        }else if($_SESSION["FoodUpdated"] != null){
+          print '<script>swal("Success!", "Food Updated !", "success");</script>';
+          $_SESSION["FoodUpdated"] = null;
+        }else if($_SESSION["deleteFood"] != null){
+          print '<script>swal("Success!", "Food DELETED !", "success");</script>';
+          $_SESSION["deleteFood"] = null;
         }
       ?>
 
@@ -399,11 +405,11 @@
                       </form>
                   </td>
                   <td>
-                      <form action="" method="post">
-                        <input type="text" value="<?php echo $Frows['p_id'];?>" hidden>
-                        <input type="submit" 
+                      <form action="../configs/AdminChanges/AddFood.php" method="post">
+                        <input type="text" name="fId" value="<?php echo $Frows['p_id'];?>" hidden>
+                        <input type="submit" name="deleteFood"
                         style="padding: 5px 10px; color:#000000;background:#FF004F;border:1px solid #FF004F;border-radius:5px;cursor:pointer;"
-                        value="Update">
+                        value="Delete">
                       </form>
                   </td>
               </tr>

@@ -30,6 +30,9 @@ if(isset($_POST['updateFood'])) {
     <section class="container">
         <header>ADD FOOD</header>
         <form action="../../configs/AdminChanges//AddFood.php" class="form" method="post">
+
+            <input type="text" name="pid" value="<?php echo $f_id;  ?>" hidden>
+
             <div class="input-box">
                 <label>Food Name</label>
                 <input type="text" name="food-name" value="<?php 
@@ -117,18 +120,17 @@ if(isset($_POST['updateFood'])) {
                     </div>
                 </div>
             </div>
-            <button type="submit" name="
-
             <?php 
-            if(isset($_POST['updateFood'])){
-                echo "updateFood";
-            }else{
-                echo "addFood";
-            }
+                if(isset($_POST['updateFood'])){
+                    echo '<button type="submit" name="updateFood">Update Food</button>';
+                    
+                }else{
+                    
+                    echo '<button type="submit" name="addFood">Add Food</button>';
+                }
             ?>
-            ">Add Food</button>
-            <button style="background: red;" onclick="location.href='../AdminPanel.php'">Cancel</button>
         </form>
+        <button style="background: red;padding:10px 30px;margin-top:30px;border:1px solid red;cursor:pointer;color:aliceblue;" onclick="location.href='../AdminPanel.php'">Cancel</button>
     </section>
 </body>
 
