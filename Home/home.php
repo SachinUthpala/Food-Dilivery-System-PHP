@@ -12,12 +12,6 @@
   // Turn off all error reporting
   error_reporting(0);
 
-  //cheacking !not important
-  if($_SESSION["LoginOnce"] == null){
-    $_SESSION["LoginOnce"] = null;
-  }else{
-    $_SESSION["LoginOnce"] = 1;
-  }
 
 
 ?>
@@ -85,14 +79,14 @@
     
     <!--sweet alert-->
     <?php
-      if($_SESSION["userName"] != null && $_SESSION["LoginOnce"] == null){
+      if($_SESSION["userName"] != null && $_SESSION["LoginOnce"] != null){
         print '<script>swal("Success!", "You are Sucessfully registed!", "success");</script>';
-        $_SESSION["LoginOnce"] = 1;
+        $_SESSION["LoginOnce"] = null;
       }
 
       if($_SESSION["logedIn"] == 1 && $_SESSION["usrEmail"] != null){
         print '<script>swal("Success!", "You are Sucessfully logedin!", "success");</script>';
-        $_SESSION["LoginOnce"] = 1;
+        $_SESSION["LoginOnce"] = null;
       }
     ?>
   <!--end of sweet alert-->

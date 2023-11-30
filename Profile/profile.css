@@ -19,9 +19,9 @@ label.btn {
 }
 
 .btn-outline-primary {
-    border-color: #26B4FF;
+    border-color: orangered;
     background: transparent;
-    color: #26B4FF;
+    color: orangered;
 }
 
 .btn {

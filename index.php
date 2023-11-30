@@ -7,7 +7,11 @@
   // Turn off all error reporting
   error_reporting(0);
 
-  //email Remaining session
+  
+  if($_SESSION["GenaralSucess"] != null){
+    print '<script>swal("Success!", "You are Sucessfully deleted!", "success");</script>';
+    $_SESSION["GenaralSucess"] = null;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +116,7 @@
 
     <!--raming email alert-->
    <?php
-     if($_SESSION["RemainingEmail"] != null){
+    if($_SESSION["RemainingEmail"] != null){
       $_SESSION["RemainingEmail"] = null;
       print '<script>swal("Sorry!", "Opps, User Aleready EXsist. Use diffrant email.", "error");;</script>';
     }else if($_SESSION["worngMAil"] != null){
