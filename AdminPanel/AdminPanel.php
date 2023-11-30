@@ -308,7 +308,20 @@
         </div>
       </main>
       <!-- End Main2 -->
+      <!--php for main3-->
 
+      <?php
+        //feacting data from product table
+        $Foodquery = "SELECT * FROM products";
+        $starterQuery = "SELECT * FROM products WHERE p_catogary  = 'Starter' ";
+        $mainsQuery = "SELECT * FROM products WHERE p_catogary = 'Mains' ";
+        $dessertQuery = "SELECT * FROM products WHERE p_catogary = 'Desserts' ";
+        
+        $FoodResult = $conn -> query($Foodquery);
+        $starterResult = $conn -> query($starterQuery);
+        $mainResult = $conn -> query($mainsQuery);
+        $deResult = $conn -> query($dessertQuery);
+      ?>
       <main class="main-container" id="main3">
         <div class="main-title">
           <p class="font-weight-bold">FOODS</p>
@@ -321,7 +334,7 @@
               <p class="text-primary">STARTERS</p>
               <span class="material-icons-outlined text-blue">soup_kitchen</span>
             </div>
-            <span class="text-primary font-weight-bold">249</span>
+            <span class="text-primary font-weight-bold"><?php echo mysqli_num_rows($starterResult); ?> ITEMS</span>
           </div>
 
           <div class="card">
@@ -329,7 +342,7 @@
               <p class="text-primary">MAINS</p>
               <span class="material-icons-outlined text-orange">lunch_dining</span>
             </div>
-            <span class="text-primary font-weight-bold">83</span>
+            <span class="text-primary font-weight-bold"><?php echo mysqli_num_rows($mainResult); ?> ITEMS</span>
           </div>
 
           <div class="card">
@@ -337,7 +350,7 @@
               <p class="text-primary">DESSERTS</p>
               <span class="material-icons-outlined text-green">icecream</span>
             </div>
-            <span class="text-primary font-weight-bold">79</span>
+            <span class="text-primary font-weight-bold"><?php echo mysqli_num_rows($deResult); ?> ITEMS</span>
           </div>
 
           <div class="card add-card"   style="cursor: pointer;"   onclick="location.href='./Add&UpdateFood/Add_Update_Food.php'" >    
@@ -345,7 +358,7 @@
               <p class="text-primary">ADD FOOD</p>
               <span class="material-icons-outlined text-green">icecream</span>
             </div>
-            <span class="text-primary font-weight-bold">79</span>
+            <span class="text-primary font-weight-bold">+</span>
           </div>
 
         </div>
@@ -357,17 +370,17 @@
               <tr>
                 <th>NO</th>
                 <th>NAME</th>
-                <th>EMAIL</th>
-                <th>PHONE</th>
-                <th>PASSWORD</th>
-                <th>IS ADMIN</th>
+                <th>CATOGARY</th>
+                <th>DISCRIPTION</th>
+                <th>PRICE</th>
+                <th>IMG</th>
+                <th>UPDATE</th>
                 <th>DELETE</th>
-                <th>ADMIN ACCESS</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                
+
               </tr>
             </tbody>
             <tbody>
