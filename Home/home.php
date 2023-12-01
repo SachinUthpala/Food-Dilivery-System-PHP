@@ -92,6 +92,21 @@
       if($_SESSION["logedIn"] == 1 && $_SESSION["usrEmail"] != null){
         print '<script>swal("Success!", "You are Sucessfully logedin!", "success");</script>';
         $_SESSION["LoginOnce"] = null;
+        $_SESSION["logedIn"] = null;
+      }
+
+      if($_SESSION["AddStarter"] != null){
+        print '<script>swal("Success!", "Your Starters Add to the Cart!", "success");</script>';
+        $_SESSION["AddStarter"] = null;
+
+      }else if($_SESSION["AddMain"] != null){
+        print '<script>swal("Success!", "Your Mains Add to the Cart!", "success");</script>';
+        $_SESSION["AddMain"] = null;
+        
+      }else if($_SESSION["AddDessert"] != null){
+        print '<script>swal("Success!", "Your Dessert Add to the Cart!", "success");</script>';
+        $_SESSION["AddDessert"] = null;
+
       }
     ?>
   <!--end of sweet alert-->
@@ -228,20 +243,25 @@
             <img src="../imgs/Web-img/BackGround.jpg" alt="" />
           </div>
           <div class="product-name">
-            <span class="secondaryText"><?php echo $Starterrow['p_name']; ?></span><br /><br />
+            <span class="secondaryText"><?php echo $Starterrow['p_name']; ?></span><br />
             <span style="line-height: 25px">
               <?php echo $Starterrow['p_discription']; ?>
             </span>
-          </div><br>
+          </div>
           <span class="secondaryText"><?php echo "Rs ".$Starterrow['p_price'].".00"; ?></span>
           <div class="addToCart">
-            <form action="">
+            <form action="../configs/cart/addCart.php" method="post">
               <input type="hidden" name="userMail"  value="<?php echo $mailsA; ?>">
               <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
               <input type="hidden" name="foodName"  value="<?php echo $Starterrow['p_name'];?>">
               <input type="hidden" name="foodPrice" value="<?php echo $Starterrow['p_price']; ?>">
               <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
-              <button type="submit">
+              <div class="container">
+                <p>Qun</p>
+                <p>:</p>
+                <input type="number" min="0" max="100" step="1" value="1" id="my-input" name="fcount">
+              </div><br>
+              <button type="submit" name="AddStarter" class="shoping-btn">
                  ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </form>
@@ -278,20 +298,25 @@
             <img src="../imgs/Web-img/BackGround.jpg" alt="" />
           </div>
           <div class="product-name">
-            <span class="secondaryText"> <?php echo $mainRow['p_name']; ?> </span><br /><br />
+            <span class="secondaryText"> <?php echo $mainRow['p_name']; ?> </span>
             <span style="line-height: 25px">
               <?php echo $mainRow['p_discription']; ?>
             </span>
-          </div><br>
+          </div>
           <span class="secondaryText"><?php echo "Rs ".$mainRow['p_price'].".00"; ?></span>
           <div class="addToCart">
-            <form action="">
+            <form action="../configs/cart/addCart.php" method="post">
               <input type="hidden" name="userMail"  value="<?php echo $mailsA; ?>">
               <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
               <input type="hidden" name="foodName"  value="<?php echo $mainRow['p_name'];?>">
               <input type="hidden" name="foodPrice" value="<?php echo $mainRow['p_price']; ?>">
               <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
-              <button type="submit">
+              <div class="container">
+                <p>Qun</p>
+                <p>:</p>
+                <input type="number" min="0" max="100" step="1" value="1" id="my-input" name="fcount">
+              </div><br>
+              <button type="submit" name="AddMain" class="shoping-btn">
                  ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </form>
@@ -328,20 +353,25 @@
             <img src="../imgs/Web-img/BackGround.jpg" alt="" />
           </div>
           <div class="product-name">
-            <span class="secondaryText"> <?php echo $DessertRow['p_name']; ?></span><br /><br />
+            <span class="secondaryText"> <?php echo $DessertRow['p_name']; ?></span>
             <span style="line-height: 25px">
               <?php echo $DessertRow['p_discription']; ?>
             </span>
-          </div><br>
+          </div>
           <span class="secondaryText"><?php echo "Rs ".$DessertRow['p_price'].".00"; ?></span>
           <div class="addToCart">
-            <form action="">
+            <form action="../configs/cart/addCart.php" method="post">
               <input type="hidden" name="userMail"  value="<?php echo $mailsA; ?>">
               <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
               <input type="hidden" name="foodName"  value="<?php echo $DessertRow['p_name'];?>">
               <input type="hidden" name="foodPrice" value="<?php echo $DessertRow['p_price']; ?>">
               <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
-              <button type="submit">
+              <div class="container">
+                <p>Qun</p>
+                <p>:</p>
+                <input type="number" min="0" max="100" step="1" value="1" name="fcount" id="my-input" >
+              </div><br>
+              <button type="submit" name="AddDessert" class="shoping-btn">
                  ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </form>
@@ -473,6 +503,23 @@
                 }
                 });
             }
+    </script>
+
+    <script>
+      const myInput = document.getElementById("my-input");
+        function stepper(btn){
+            let id = btn.getAttribute("id");
+            let min = myInput.getAttribute("min");
+            let max = myInput.getAttribute("max");
+            let step = myInput.getAttribute("step");
+            let val = myInput.getAttribute("value");
+            let calcStep = (id == "increment") ? (step*1) : (step * -1);
+            let newValue = parseInt(val) + calcStep;
+
+            if(newValue >= min && newValue <= max){
+                myInput.setAttribute("value", newValue);
+            }
+        }
     </script>
 
 

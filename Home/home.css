@@ -308,7 +308,7 @@ nav ul li:hover:after {
 }
 
 .addToCart {
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 .addToCart i {
@@ -316,7 +316,7 @@ nav ul li:hover:after {
     color: orangered;
 }
 
-.addToCart button {
+.addToCart .shoping-btn {
     font-size: 20px;
     padding: 10px 20px;
     border-radius: 10px;
@@ -391,9 +391,38 @@ nav ul li:hover:after {
 /*end of ther footer section*/
 
 
+
 .profile-img{
     cursor: pointer;
     width: 50px;
     height: 50px;
     border-radius: 100%;
 }
+
+
+
+.container {
+    padding-left: 80px;
+    gap: 10px;
+    width: 20%;
+    display: flex;
+    background-color: transparent;
+    border-radius: 45px;
+}
+
+input[type="number"] {
+    padding-left: 10px;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid orangered;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #202030;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    
+    margin: 0;
+}
+

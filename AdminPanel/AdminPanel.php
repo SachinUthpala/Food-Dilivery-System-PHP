@@ -155,12 +155,38 @@
             <span class="text-primary font-weight-bold"><?php echo $totalProducts; ?></span>
           </div>
 
+          <!--php for calculate total sales-->
+          <?php 
+          
+            $sqlSales = "SELECT TotalPrice,quntity FROM cart WHERE status=1";
+            $totalSalesResult = $conn -> query($sqlSales);
+            $totalSales = 0;
+            $totalSellQuntity = 0;
+
+            while($rowSales = mysqli_fetch_assoc( $totalSalesResult )){
+              $totalSales =  $totalSales + (int)$rowSales["TotalPrice"];
+              $totalSellQuntity = $totalSellQuntity + (int)$rowSales["quntity"];
+            }
+
+            $sqlPendingSales = "SELECT TotalPrice,quntity FROM cart WHERE status=0";
+            $totalPendingSalesResult = $conn -> query($sqlPendingSales);
+            $totalPendingSales = 0;
+            $totalPendingSellQuntity = 0;
+
+            while($rowPendingSales = mysqli_fetch_assoc( $totalPendingSalesResult )){
+              $totalPendingSales =  $totalPendingSales + (int)$rowPendingSales["TotalPrice"];
+              $totalPendingSellQuntity = $totalPendingSellQuntity + (int)$rowPendingSales["quntity"];
+            }
+          
+          ?>
+          <!--end of calculate total sales-->
+
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">TOTAL SALES</p>
               <span class="material-icons-outlined text-orange">monetization_on</span>
             </div>
-            <span class="text-primary font-weight-bold">83</span>
+            <span class="text-primary font-weight-bold"><?php echo "Rs ".$totalSales.".00"; ?></span>
           </div>
 
           <div class="card">
@@ -169,6 +195,38 @@
               <span class="material-icons-outlined text-green">sperson</span>
             </div>
             <span class="text-primary font-weight-bold"><?php echo $numofUserRows; ?></span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">ITEMS SELLED</p>
+              <span class="material-icons-outlined text-green">poll</span>
+            </div>
+            <span class="text-primary font-weight-bold"><?php echo $totalSellQuntity; ?></span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">PENDING ORDERS</p>
+              <span class="material-icons-outlined text-green">add_shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold"><?php echo mysqli_num_rows($totalPendingSalesResult); ?></span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">PENDING ITEMS</p>
+              <span class="material-icons-outlined text-green">shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold"><?php echo $totalPendingSellQuntity; ?></span>
+          </div>
+          
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">PENDING SALES</p>
+              <span class="material-icons-outlined text-green">add_shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold"><?php echo $totalPendingSales; ?></span>
           </div>
 
         </div>

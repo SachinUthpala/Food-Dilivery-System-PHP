@@ -173,7 +173,60 @@ body {
 }
 
 .card:nth-child(3) {
-  border-left: 7px solid #367952;
+  border-left: 7px solid #ff33ff;
+}
+
+.card:nth-child(4) {
+  border-left: 7px solid #f9fc2a;
+}
+
+.card:nth-child(5) {
+  border-left: 7px solid #31ff87;
+}
+
+.card:nth-child(6) {
+  border-left: 7px solid rgb(177, 61, 255) ;
+}
+
+.card:nth-child(7) {
+  border-left: 7px solid rgb(255, 61, 164);
+}
+
+/*hover effects*/
+
+.card:first-child:hover {
+  transition: 0.7s;
+  background-color:  #246dec3f;
+}
+
+.card:nth-child(2):hover {
+  transition: 0.7s;
+  background-color:  #f5b84f34;
+}
+
+.card:nth-child(3):hover {
+  transition: 0.7s;
+  background-color:  #ff33ff35;
+}
+
+.card:nth-child(4):hover {
+  transition: 0.7s;
+  background-color:  #f8fc2a3c;
+}
+
+.card:nth-child(5):hover {
+  transition: 0.7s;
+  background-color:  #31ff8733;
+}
+
+.card:nth-child(6):hover {
+  transition: 0.7s;
+  background-color:  rgba(177, 61, 255, 0.228);
+}
+
+.card:nth-child(7):hover {
+  transition: 0.7s;
+  background-color: rgba(255, 61, 152, 0.228);
 }
 
 .card > span {
