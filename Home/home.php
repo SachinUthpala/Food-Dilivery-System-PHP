@@ -133,6 +133,8 @@
             }
           ?>        
         </span>
+        <i class="fas fa-cart-plus" style="cursor:pointer;" class="namess"></i>
+        <i class="fas fa-power-off" style="cursor:pointer;" class="namess" onclick="function5()"></i>
         
       </div>
     </nav>
@@ -234,7 +236,11 @@
           <span class="secondaryText"><?php echo "Rs ".$Starterrow['p_price'].".00"; ?></span>
           <div class="addToCart">
             <form action="">
-              
+              <input type="hidden" name="userMail"  value="<?php echo $mailsA; ?>">
+              <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
+              <input type="hidden" name="foodName"  value="<?php echo $Starterrow['p_name'];?>">
+              <input type="hidden" name="foodPrice" value="<?php echo $Starterrow['p_price']; ?>">
+              <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
               <button type="submit">
                  ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
               </button>
@@ -243,14 +249,17 @@
         </div>
         <?php
         }
-        ?>
-        
-        
-        
+        ?>        
       </div>
     </div>
     <!--3 end section section-->
+    
 
+    <!--fecting mains data-->
+    <?php 
+      $sqlMain = "SELECT * FROM products WHERE p_catogary = 'Mains'";
+      $mainResult = $conn -> query($sqlMain);
+    ?>
     <!--4 section section-->
     <div class="sec03" id="mains">
       <div class="headdings">
@@ -259,28 +268,47 @@
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, vel!
         </span>
       </div>
+
       <div class="items">
+      <?php 
+        while( $mainRow = $mainResult->fetch_assoc()) {
+      ?>
         <div class="product">
           <div class="product-img">
             <img src="../imgs/Web-img/BackGround.jpg" alt="" />
           </div>
           <div class="product-name">
-            <span class="secondaryText"> Food Item </span><br /><br />
+            <span class="secondaryText"> <?php echo $mainRow['p_name']; ?> </span><br /><br />
             <span style="line-height: 25px">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
-              expedita.
+              <?php echo $mainRow['p_discription']; ?>
             </span>
-          </div>
+          </div><br>
+          <span class="secondaryText"><?php echo "Rs ".$mainRow['p_price'].".00"; ?></span>
           <div class="addToCart">
-            <button type="button">
-              ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
-            </button>
+            <form action="">
+              <input type="hidden" name="userMail"  value="<?php echo $mailsA; ?>">
+              <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
+              <input type="hidden" name="foodName"  value="<?php echo $mainRow['p_name'];?>">
+              <input type="hidden" name="foodPrice" value="<?php echo $mainRow['p_price']; ?>">
+              <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
+              <button type="submit">
+                 ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </form>
           </div>
         </div>
+      <?php 
+        }
+      ?>
       </div>
+
     </div>
     <!--4 end section section-->
-
+    <!--fecting dessert data -->
+    <?php
+      $sqlDessert = "SELECT * FROM products WHERE p_catogary = 'Desserts'";
+      $dessertResult = $conn -> query($sqlDessert);
+    ?>
     <!--section 5-->
     <div class="sec03" id="desserts">
       <div class="headdings">
@@ -290,25 +318,38 @@
         </span>
       </div>
       <div class="items">
+        
+      <?php
+        while($DessertRow = $dessertResult->fetch_assoc()) {
+      ?>
 
         <div class="product">
           <div class="product-img">
             <img src="../imgs/Web-img/BackGround.jpg" alt="" />
           </div>
           <div class="product-name">
-            <span class="secondaryText"> Food Item </span><br /><br />
+            <span class="secondaryText"> <?php echo $DessertRow['p_name']; ?></span><br /><br />
             <span style="line-height: 25px">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
-              expedita.
+              <?php echo $DessertRow['p_discription']; ?>
             </span>
-          </div>
+          </div><br>
+          <span class="secondaryText"><?php echo "Rs ".$DessertRow['p_price'].".00"; ?></span>
           <div class="addToCart">
-            <button type="button">
-              ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
-            </button>
+            <form action="">
+              <input type="hidden" name="userMail"  value="<?php echo $mailsA; ?>">
+              <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
+              <input type="hidden" name="foodName"  value="<?php echo $DessertRow['p_name'];?>">
+              <input type="hidden" name="foodPrice" value="<?php echo $DessertRow['p_price']; ?>">
+              <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
+              <button type="submit">
+                 ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </form>
           </div>
         </div>
-
+        <?php 
+        }
+        ?>
       </div>
     </div>
     <!--end of section 5-->
