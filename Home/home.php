@@ -201,6 +201,12 @@
     </div>
     <!--end os 2nd section-->
 
+    <?php 
+      $sqlStarter = "SELECT * FROM products WHERE p_catogary = 'Starter'";
+      $starterResult = $conn -> query($sqlStarter); 
+
+      
+    ?>
     <!--3 section section-->
     <div class="sec03" id="starters">
       <div class="headdings">
@@ -212,23 +218,32 @@
       <br /><br />
       <div class="items">
         
+      <?php
+        while ($Starterrow = $starterResult->fetch_assoc()) {
+      ?>
         <div class="product">
           <div class="product-img">
             <img src="../imgs/Web-img/BackGround.jpg" alt="" />
           </div>
           <div class="product-name">
-            <span class="secondaryText"> Food Item </span><br /><br />
+            <span class="secondaryText"><?php echo $Starterrow['p_name']; ?></span><br /><br />
             <span style="line-height: 25px">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
-              expedita.
+              <?php echo $Starterrow['p_discription']; ?>
             </span>
-          </div>
+          </div><br>
+          <span class="secondaryText"><?php echo "Rs ".$Starterrow['p_price'].".00"; ?></span>
           <div class="addToCart">
-            <button type="button">
-              ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
-            </button>
+            <form action="">
+              
+              <button type="submit">
+                 ADD TO CART - <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </form>
           </div>
         </div>
+        <?php
+        }
+        ?>
         
         
         
