@@ -148,7 +148,7 @@
             }
           ?>        
         </span>
-        <i class="fas fa-cart-plus" style="cursor:pointer;" class="namess"></i>
+        <i class="fas fa-cart-plus" style="cursor:pointer;" class="namess" onclick="location.href='./cart/cart.php'"></i>
         <i class="fas fa-power-off" style="cursor:pointer;" class="namess" onclick="function5()"></i>
         
       </div>
