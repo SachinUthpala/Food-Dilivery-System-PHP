@@ -9,18 +9,22 @@ if(isset($_POST["genaral-submit"])){
     $uppass = $_POST["updatedEmail"];
     $id = $_POST["id"];
 
-    $sql = "UPDATE customers SET name='$upname' , email = '$uppass' WHERE id = $id";
-    $result = $conn->query($sql);
+
+
+        $sql = "UPDATE customers SET name='$upname' , email = '$uppass' WHERE id = $id";
+        $result = $conn->query($sql);
+        
+        if($result){
+            $_SESSION["GenaralSucess"] = 1;
+            header("Location: http://localhost/Food-Dilivery-System/profile/profile.php");
+
+        }else{
+            $_SESSION["GenaralUnSucess"] = 1;
+            header("Location: http://localhost/Food-Dilivery-System/profile/profile.php");
+
+        }
     
-    if($result){
-        $_SESSION["GenaralSucess"] = 1;
-        header("Location: http://localhost/Food-Dilivery-System/profile/profile.php");
-
-    }else{
-        $_SESSION["GenaralUnSucess"] = 1;
-        header("Location: http://localhost/Food-Dilivery-System/profile/profile.php");
-
-    }
+    
 
 }else if(isset($_POST["password-change"])){
     $id = $_POST["id"];
@@ -102,6 +106,42 @@ if(isset($_POST["genaral-submit"])){
         $_SESSION["GenaralUnSucess"] = 1;
         header("Location: http://localhost/Food-Dilivery-System/profile/profile.php"); 
     }
-}
+}else if(isset($_POST["ImgUpload"])){
+
+    if(isset($_FILES["profileImg"])){
+
+        $img_name = $_FILES["profileImg"]['name'];
+        $img_size = $_FILES["profileImg"]['size'];
+        $temp_name = $_FILES["profileImg"]['tmp_name'];
+        $error = $_FILES["profileImg"]['error'];
+        $id = $_POST["id"];
+
+        if($error ===0){
+            if($img_size > 200000){
+                header("Location: http://localhost/Food-Dilivery-System/profile/profile.php");
+                $_SESSION['imgUnsucess'] = 1;
+            }else{
+                $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                $img_ex_cl = strtolower($img_ex);
+                $new_img_name = uniqid("IMG-",true).'.'.$img_ex_cl;
+                $img_upload_path = "../../imgs/UploadImg/Users/".$new_img_name;
+                move_uploaded_file($temp_name,$img_upload_path);
+
+                $sql = "UPDATE customers SET image = '$new_img_name' WHERE id = $id";
+                $results = $conn -> query($sql);
+
+                if($results){
+                    $_SESSION['imgSucess'] = 1;
+                    header("Location: http://localhost/Food-Dilivery-System/profile/profile.php"); 
+                }
+
+            }
+        }else{
+            $_SESSION['imgUnsucess'] = 1;
+            header("Location: http://localhost/Food-Dilivery-System/profile/profile.php");
+        }
+}}
 
 ?>
+
+

@@ -36,11 +36,17 @@
         }else if($_SESSION["GenaralUnSucess"] != null){
             print '<script>swal("Sorry!", "Opps, something went wrong. Please try again later.", "error")</script>';
             $_SESSION["GenaralUnSucess"] = null;
+        }else if($_SESSION['imgSucess']!= null){
+            print '<script>swal("Success!", "You are Sucessfully Upoad Img!", "success");</script>';
+            $_SESSION['imgSucess'] = null;
+        }else if($_SESSION['imgUnsucess'] != null){
+            print '<script>swal("Sorry!", "Opps, something went wrong. Please try again later.", "error")</script>';
+            $_SESSION['imgUnsucess'] = null;
         }
     ?>    
 
 
-    <form action="../configs/profileSettings/profileSettings.php" method="post">
+    <form action="../configs/profileSettings/profileSettings.php" method="post" enctype="multipart/form-data">
     <div class="container light-style flex-grow-1 container-p-y">
         <h4 class="font-weight-bold py-3 mb-4">
             Profile settings
@@ -64,19 +70,21 @@
                         <!--genaral content-->
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
+                                <img src="<?php echo "../imgs/UploadImg/Users/".$row['image'];  ?>" alt
                                     class="d-block ui-w-80">
                                 <div class="media-body ml-4">
                                     <label class="btn btn-outline-primary">
+                                        <input type="hidden" class="form-control" value="<?php echo $row["id"] ?>" name="id">
                                         Upload new photo
-                                        <input type="file" class="account-settings-fileinput">
+                                        <input type="file" class="account-settings-fileinput" name="profileImg">
                                     </label>
-                                    <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                                    <button type="submit" class="btn btn-default md-btn-flat" name="ImgUpload">Submit</button>
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
                             </div>
                             <hr class="border-light m-0">
-
+    </form>            
+                <form method="post" action="../configs/profileSettings/profileSettings.php">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="form-label">User ID</label>

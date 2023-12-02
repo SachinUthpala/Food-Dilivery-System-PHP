@@ -19,6 +19,10 @@
   $result = $conn->query($sqlForAdmin);
   $rowAdmin = $result->fetch_assoc();
 
+  //getting profile img
+  $sqlImg = "SELECT image FROM customers WHERE email = '$mailsA' ";
+  $resultImg = $conn->query($sqlImg);
+  $ImgRow = $resultImg->fetch_assoc()
 ?>
 
 <!DOCTYPE html>
@@ -138,7 +142,7 @@
             }
           ?>        
         </span>
-        <img src="../imgs/Web-img/img01.jpg" alt="" class="profile-img" onclick="location.href = '../profile/profile.php';" >
+        <img src="<?php echo "../imgs/UploadImg/Users/".$ImgRow['image']  ?>" alt="" class="profile-img" onclick="location.href = '../profile/profile.php';" >
         <span style="text-transform: uppercase;cursor:pointer;" class="namess" onclick="function5()">
           <?php
             if (empty($_SESSION["userName"])){
