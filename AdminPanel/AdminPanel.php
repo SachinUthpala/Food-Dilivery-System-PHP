@@ -226,7 +226,7 @@
               <p class="text-primary">PENDING SALES</p>
               <span class="material-icons-outlined text-green">add_shopping_cart</span>
             </div>
-            <span class="text-primary font-weight-bold"><?php echo $totalPendingSales; ?></span>
+            <span class="text-primary font-weight-bold"><?php echo "Rs ".$totalPendingSales.".00"; ?></span>
           </div>
 
         </div>

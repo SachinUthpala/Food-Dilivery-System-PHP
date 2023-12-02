@@ -229,7 +229,7 @@
                 <td><?php echo $cartRow["uname"]  ?> </td>
                 <td>
                     <div class="cart-info">
-                        <img src="../../imgs/Web-img/img01.jpg" alt="" width="70" height="70">
+                        <img src="<?php echo "../../imgs/UploadImg/Foods/".$cartRow["f_img"];  ?>" alt="" width="70" height="70">
                         <div>
                             <p><?php echo $cartRow["f_name"];  ?></p>
                             <small><?php echo "Rs ".$cartRow["f_price"].".00"  ?></small><br><br>

@@ -244,7 +244,7 @@
       ?>
         <div class="product">
           <div class="product-img">
-            <img src="../imgs/Web-img/BackGround.jpg" alt="" />
+            <img src="<?php  echo "../imgs/UploadImg/Foods/".$Starterrow['p_img']; ?>" alt="" />
           </div>
           <div class="product-name">
             <span class="secondaryText"><?php echo $Starterrow['p_name']; ?></span><br />
@@ -259,7 +259,7 @@
               <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
               <input type="hidden" name="foodName"  value="<?php echo $Starterrow['p_name'];?>">
               <input type="hidden" name="foodPrice" value="<?php echo $Starterrow['p_price']; ?>">
-              <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
+              <input type="hidden" name="foodImg"  value="<?php echo $Starterrow['p_img'];?>">
               <div class="container">
                 <p>Qun</p>
                 <p>:</p>
@@ -299,7 +299,7 @@
       ?>
         <div class="product">
           <div class="product-img">
-            <img src="../imgs/Web-img/BackGround.jpg" alt="" />
+            <img src="<?php echo "../imgs/UploadImg/Foods/".$mainRow['p_img'];  ?>" alt="" />
           </div>
           <div class="product-name">
             <span class="secondaryText"> <?php echo $mainRow['p_name']; ?> </span>
@@ -314,7 +314,7 @@
               <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
               <input type="hidden" name="foodName"  value="<?php echo $mainRow['p_name'];?>">
               <input type="hidden" name="foodPrice" value="<?php echo $mainRow['p_price']; ?>">
-              <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
+              <input type="hidden" name="foodImg"  value="<?php echo $mainRow['p_img'];?>">
               <div class="container">
                 <p>Qun</p>
                 <p>:</p>
@@ -354,7 +354,7 @@
 
         <div class="product">
           <div class="product-img">
-            <img src="../imgs/Web-img/BackGround.jpg" alt="" />
+            <img src="<?php echo "../imgs/UploadImg/Foods/".$DessertRow['p_img'];  ?>" alt="" />
           </div>
           <div class="product-name">
             <span class="secondaryText"> <?php echo $DessertRow['p_name']; ?></span>
@@ -369,7 +369,7 @@
               <input type="hidden" name="userName"  value="<?php echo $_SESSION["userName"]; ?>">
               <input type="hidden" name="foodName"  value="<?php echo $DessertRow['p_name'];?>">
               <input type="hidden" name="foodPrice" value="<?php echo $DessertRow['p_price']; ?>">
-              <input type="hidden" name="foodImg"  value="<?php echo "immg";?>">
+              <input type="hidden" name="foodImg"  value="<?php echo $DessertRow['p_img']?>">
               <div class="container">
                 <p>Qun</p>
                 <p>:</p>

@@ -29,7 +29,7 @@ if(isset($_POST['updateFood'])) {
 <body>
     <section class="container">
         <header>ADD FOOD</header>
-        <form action="../../configs/AdminChanges//AddFood.php" class="form" method="post">
+        <form action="../../configs/AdminChanges//AddFood.php" class="form" method="post" enctype="multipart/form-data">
 
             <input type="text" name="pid" value="<?php echo $f_id;  ?>" hidden>
 
@@ -62,7 +62,7 @@ if(isset($_POST['updateFood'])) {
                     <?php
                     
                     if(isset($_POST['updateFood'])){
-                        echo $frows["p_price"];
+                        echo (int)$frows["p_price"];
                     }
 
                     ?>
